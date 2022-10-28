@@ -2,20 +2,29 @@
 
 function getRandomPositiveNumber(min, max) {
   if ((typeof min) === 'number' && (typeof max) === 'number'){
-    if (min != Infinity && max != Infinity) {
-      if (min != NaN && max != NaN) {
+    if (min !== Infinity && max !== Infinity) {
+      if (!isNaN(min) && !isNaN(max)) {
         if (min >= 0 && max >= 0) {
           if ((max - min) >= 1) {
             min = Math.ceil(min);
             max = Math.floor(max);
-            let rand = min - 0.5 + Math.random() * (max - min + 1);
+            const rand = min - 0.5 + Math.random() * (max - min + 1);
             return Math.round(rand);
           }
         }
       }
     }
   }
-  return NaN
-};
+  return NaN;
+}
 
-console.log(getRandomPositiveNumber(1, 5));
+getRandomPositiveNumber(1, 5);
+
+function isAcceptableLength(line, maxLength) {
+    if(line.length <= maxLength) {
+        return true;
+    }
+    return false;
+}
+
+isAcceptableLength("adjkla", 7);
