@@ -24,7 +24,7 @@ function isAcceptableLength(line, maxLength) {
   return line.length <= maxLength;
 }
 
-isAcceptableLength("adjkla", 7);
+isAcceptableLength('adjkla', 7);
 
 // 4.15
 
@@ -59,22 +59,22 @@ const descriptions = [
 const likes = {
   min: 15,
   max: 200
-}
+};
 
 const comments = {
   min: 0,
   max: 200
-}
+};
 
-let arrayElement = [];
+const arrayElement = [];
 
 for (let i = 0; i < 25; i++) {
   cog = {
-      id: i,
-      url: `photos/${i}.jpg`,
-      descriptions: descriptions[getRandomPositiveNumber(0, descriptions.length)],
-      likes: getRandomPositiveNumber(likes.min, likes.max),
-      comments: getRandomPositiveNumber(comments.min, comments.max)
+    id: i,
+    url: `photos/${i}.jpg`,
+    descriptions: descriptions[getRandomPositiveNumber(0, descriptions.length)],
+    likes: getRandomPositiveNumber(likes.min, likes.max),
+    comments: getRandomPositiveNumber(comments.min, comments.max)
   };
   arrayElement[i] = cog;
 }
