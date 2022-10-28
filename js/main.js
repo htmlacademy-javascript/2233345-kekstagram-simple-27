@@ -70,7 +70,7 @@ const createOffersMock = () => {
   const arrayElement = [];
 
   for (let i = 0; i < 25; i++) {
-    obj = {
+    const obj = {
       id: i,
       url: `photos/${i}.jpg`,
       descriptions: descriptions[getRandomPositiveNumber(0, descriptions.length)],
@@ -80,6 +80,6 @@ const createOffersMock = () => {
     arrayElement[i] = obj;
   }
   return arrayElement;
-}
+};
 
 createOffersMock();
