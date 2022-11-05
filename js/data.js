@@ -57,6 +57,4 @@ const createOffersMock = () => {
 
 createOffersMock();
 
-export {
-  createOffersMock
-};
+export {createOffersMock};
