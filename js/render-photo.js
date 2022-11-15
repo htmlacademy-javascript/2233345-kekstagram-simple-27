@@ -16,7 +16,7 @@ function renderPhoto() {
   });
 
   document.querySelector('.pictures').appendChild(fragment);
-};
+}
 
 renderPhoto();
 
