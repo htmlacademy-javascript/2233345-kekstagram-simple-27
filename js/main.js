@@ -1,6 +1,7 @@
 import {getRandomPositiveNumber, isAcceptableLength} from './util.js';
-import {createOffersMock} from './data.js';
+import {renderPhoto} from './render-photo.js';
 
 getRandomPositiveNumber();
 isAcceptableLength();
-createOffersMock();
+renderPhoto();
+
