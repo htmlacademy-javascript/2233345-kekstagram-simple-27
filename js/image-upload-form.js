@@ -1,5 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { sliderElement } from './slider-element.js';
+import { sendData } from './api.js';
+import { showSuccessTemplate, showErrorTemplate } from './response.js';
 
 const imageForm = document.querySelector('.img-upload__form');
 const imgUploadInput = imageForm.querySelector('#upload-file');
@@ -11,6 +13,10 @@ const scaleField = imageEditingForm.querySelector('.scale__control.scale__contro
 const imageScale = imageEditingForm.querySelector('[data-preview-image="image"]');
 const pictureEffectButtons = imageEditingForm.querySelectorAll('.effects__radio');
 const textArea = imageEditingForm.querySelector('.text__description');
+const imgButtonSubmit = imageEditingForm.querySelector('.img-upload__submit');
+
+const photo = imageForm.querySelector('[data-preview-image="image"]');
+const radioButtonsPhotos = imageForm.querySelectorAll('.effects__preview');
 
 const DefaultValues = {
   NOTATION: 10,
@@ -49,6 +55,12 @@ function closeImageEditingForm() {
 }
 
 imgUploadInput.addEventListener('change', openImageEditingForm);
+
+imgUploadInput.addEventListener('change', (evt) => {
+  const url = URL.createObjectURL(evt.target.files[0]);
+  radioButtonsPhotos.forEach((item) => {item.style.backgroundImage = `url('${url}')`;});
+  photo.src = url;
+});
 
 closeEditorFormButton.addEventListener('click', closeImageEditingForm);
 
@@ -92,3 +104,36 @@ pictureEffectButtons.forEach((radio) => {
     imageScale.classList.add(`${classEffect.classList[1]}`);
   });
 });
+
+function blockSubmitButton() {
+  imgButtonSubmit.disabled = true;
+  imgButtonSubmit.textContent = 'Публикую...';
+}
+
+function unblockSubmitButton() {
+  imgButtonSubmit.disabled = false;
+  imgButtonSubmit.textContent = 'Опубликовать';
+}
+
+function handleSubmit(onSuccess) {
+  imageForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    blockSubmitButton();
+
+    sendData(
+      () => {
+        onSuccess();
+        unblockSubmitButton();
+        showSuccessTemplate();
+      },
+      () => {
+        document.removeEventListener('keydown', onPopupEscKeydown);
+        showErrorTemplate();
+        unblockSubmitButton();
+      },
+      new FormData(evt.target),
+    );
+  });
+}
+
+export { handleSubmit, closeImageEditingForm };

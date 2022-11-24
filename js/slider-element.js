@@ -104,4 +104,4 @@ formElement.addEventListener('change', (evt) => {
   }
 });
 
-export {sliderElement};
+export { sliderElement };
