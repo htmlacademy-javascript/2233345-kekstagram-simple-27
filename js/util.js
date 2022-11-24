@@ -1,27 +1,31 @@
-function getRandomPositiveNumber(min, max) {
-  if ((typeof min) === 'number' && (typeof max) === 'number') {
-    if (min !== Infinity && max !== Infinity) {
-      if (!isNaN(min) && !isNaN(max)) {
-        if (min >= 0 && max >= 0) {
-          if ((max - min) >= 1) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            const rand = min - 0.5 + Math.random() * (max - min + 1);
-            return Math.round(rand);
-          }
-        }
-      }
-    }
+// isNaN() - функция, определяющая не число. Отдает булевый признак
+function getRandomPositiveInteger(a, b) {
+
+  if (a < 0 || b < 0) {
+    return NaN;
   }
-  return NaN;
+
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+
+  const result = Math.random() * (upper - lower + 1) + lower;
+
+  return Math.floor(result);
 }
 
-getRandomPositiveNumber(1, 5);
-
-function isAcceptableLength(line, maxLength) {
-  return line.length <= maxLength;
+function getRandomElement(elements) {
+  if (elements.length === 0) {
+    return undefined;
+  }
+  return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
 
-isAcceptableLength('adjkla', 7);
+function isEscapeKey(evt) {
+  return evt.key === 'Escape';
+}
 
-export {getRandomPositiveNumber, isAcceptableLength};
+export {
+  getRandomElement,
+  getRandomPositiveInteger,
+  isEscapeKey
+};

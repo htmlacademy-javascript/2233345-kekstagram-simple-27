@@ -1,7 +1,5 @@
-import {getRandomPositiveNumber, isAcceptableLength} from './util.js';
-import {renderPhoto} from './render-photo.js';
+// window.getDescriptionArray() - для вызова из консоли
+import { printPhotos } from './print-photo.js';
+import './image-upload-form.js';
 
-getRandomPositiveNumber();
-isAcceptableLength();
-renderPhoto();
-
+printPhotos();
