@@ -90,7 +90,13 @@
    height: 28px;
    right: -17px;
    top: -6px;
+   cursor: grab;
  }
+
+ .noUi-horizontal .noUi-handle:active {
+  cursor: grabbing;
+}
+
  .noUi-vertical {
    width: 18px;
  }
